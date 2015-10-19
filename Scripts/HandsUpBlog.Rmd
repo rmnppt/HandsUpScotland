@@ -15,10 +15,10 @@ theme_blog <- theme(
   text = element_text(size = 10),
   panel.grid = element_blank()
 )
-dat <- read.csv("~/Dropbox/dataStuff/HandsUpScotland/Data/2014_Absolute_Cleaned.csv")
+dat <- read.csv("~/Dropbox/dataStuff/GITHUB/HandsUpScotland/Data/2014_Absolute_Cleaned.csv")
 datM <- dat %>% gather(mode, count, Walk:Other)
 levels(datM$mode) <- sub("...", "/", levels(datM$mode), fixed = T)
-datP <- read.csv("~/Dropbox/dataStuff/HandsUpScotland/Data/2014_Proportions_Cleaned.csv")
+datP <- read.csv("~/Dropbox/dataStuff/GITHUB/HandsUpScotland/Data/2014_Proportions_Cleaned.csv")
 datPM <- datP %>% gather(mode, count, Walk:Other)
 levels(datPM$mode) <- sub("...", "/", levels(datPM$mode), fixed = T)
 ```
@@ -86,7 +86,7 @@ pander(top10, justify = "left")
 
 Wow. East Lothian and Midlothian have over 10% of children arriving by scooter!
 
-Ok thats all from me for now. There is much more to discover in this data, if you're still reading and you would like to know more, feel free to email us. Also if you are a data enthusiast feel free to download all of my code for this from my github page [INSERT LINK]. Everything I have done on this and will do on this, will live there.
+Ok thats all from me for now. There is much more to discover in this data, if you're still reading and you would like to know more, feel free to email us. Also if you are a data enthusiast feel free to download all of my code for this from my [github page](https://github.com/rmnppt/HandsUpScotland). Everything I have done on this and will do on this, will live there.
 
 Bye for now, see you soon.
 
