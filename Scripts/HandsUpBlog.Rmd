@@ -66,8 +66,10 @@ trends$sig <- F; trends$sig[sig] <- T
 # produce
 ggplot(primary, aes(x = Year, y = count)) +
   geom_line(aes(group = Local.Authority), alpha = 0.2, col = grey(0.3)) +
-  geom_abline(aes(intercept = interc, slope = grad, colour = sig), trends, size = I(2)) +
+  geom_abline(aes(intercept = interc, slope = grad, colour = sig), 
+              trends, size = I(2)) +
   facet_wrap(~ mode, nrow = 2, scales = "free") +
+  ylab("Proportion") +
   theme_blog
 ```
 
@@ -92,4 +94,4 @@ Bye for now, see you soon.
 
 [^1]: There are some health warnings that come with this data. For the thourough skeptics I suggest reading more [here](http://www.sustrans.org.uk/sites/default/files/images/files/scotland/Hands%20Up%20Scotland%20Survey/Hands%20Up%20Scotland%202014_National%20Results%20Summary%20EMBARGOED%20UNTIL%2029.05.15.pdf) especially under Technical Notes. Personally I don't think any of the health warnings given would affect the conclusions here but if you disagree, please get in touch.
 
-[^2]: I fitted linear models through time, using F-ratio to determine if the linear slopes were significantly different from 0. If the slope was p < 0.05, I considered this statistical evidence of a temporal trend.
+[^2]: I fitted linear models through time, using F-ratio to determine if the linear slopes were significantly different from 0. P values were then corrected for multiple testing. If the slope was p < 0.05, I considered this statistical evidence of a temporal trend.
