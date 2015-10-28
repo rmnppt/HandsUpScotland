@@ -2,7 +2,7 @@
 title: "The rise of the scooter"
 author: "Roman Popat"
 date: "19 October 2015"
-output: html_document
+output: word_document
 ---
 
 ```{r, message = F, echo = F}
@@ -23,9 +23,9 @@ datPM <- datP %>% gather(mode, count, Walk:Other)
 levels(datPM$mode) <- sub("...", "/", levels(datPM$mode), fixed = T)
 ```
 
-I used to walk to school, right past the old man with the huge german shephard. Depending on how brave if felt, I crossed the road to get past that particular fence. I imagine that every childs journey to school is an adventure of sorts. How do children in Scotland get to school? Every year since 2008 there has been a survey, the "Hands Up Scotland" survey held in schools across Scotland. It is a joint venture between Sustrans and Scottish local authorities. You can find more details [here](http://www.sustrans.org.uk/scotland/what-we-do/schools-and-universities/hands-scotland). I decided to download this data and take a look at how kids get to school[^1].
+I used to walk to school, right past the old man with the huge German shepherd. Depending on how brave if felt, I crossed the road to get past that particular fence. I imagine that every child’s journey to school is an adventure of sorts. How do children in Scotland get to school? Every year since 2008 there has been a survey, the “Hands Up Scotland” survey, held in schools across Scotland. It is a joint venture between Sustrans and Scottish local authorities. You can find more details [here](http://www.sustrans.org.uk/scotland/what-we-do/schools-and-universities/hands-scotland). I decided to download this data and take a look at how kids get to school[^1].
 
-The first thing I did was to look at how different modes of transport are increasing or decreasing across different types of school (see the image below). The four panels represent the four different types of school; `r sub(" ", "", levels(dat$School.Type))`. SEN stands for special educational needs. The different coloured bars represent the proportion of children that travel by a particular mode of transport. The colour of those bars represents the mode of transport in question (see the legend). Finally each panel displays the proportions changing over time, since the survey started in 2008 (bars from left to right). If you've got all that lets take a look at this summarised data.
+The first thing I did was to look at how different modes of transport are increasing or decreasing across different types of school (see the image below). The four panels represent the four different types of school; Independent, Primary, Secondary and SEN (Special Education Needs). The different coloured bars represent the proportion of children that travel by a particular mode of transport. The colour of those bars represents the mode of transport in question (see the legend). Finally, each panel displays the proportions changing over time, since the survey started in 2008 (bars from left to right). Lets take a look at this summarised data.
 
 ```{r, message = F, echo = F, fig.height=5, fig.width=8}
 modes <- datM %>% 
@@ -40,9 +40,7 @@ p <- ggplot(modes, aes(x = Year, y = count)) +
 p
 ```
 
-The first thing to note is that children from different types of school tend to use a different mixture of transportation. For example a large proportion of children in Primary and Secondary schools walk (Red bars) compared with a relatively small proportion in Independent Schools. Most children attending SEN schools arrive by bus or taxi, whereas driving and Park & Stride schemes are more popular in Primary and Independent schools.
-
-If you look a little closer, there is a relatively small proportion of children arriving by Scooters, Skates and Bicycles, but this seems to be increasing over time (left to right). I wanted to know more about what was going on in Primary schools, were scooters really taking off? What I did next was to look at just the Primary school data and plot each mode of transport on its own (see image below). Each panel displays data on one mode of transport over time. Each line in each panel represents a single local athority. The coloured lines (red and blue) represent the overall trend across the years of the survey. The blue lines is where there is statistical evidence for a trend over time[^2]. A red line means that there is no evidence for any trend over time.
+The first thing to note is that children from different types of school tend to use a different mixture of transportation. For example, a large proportion of children in Primary and Secondary schools walk (red bars) compared with a relatively small proportion in Independent Schools. Most children attending SEN schools arrive by bus or taxi, whereas driving and Park & Stride schemes are more popular in Primary and Independent schools. If you look a little closer, there is a relatively small proportion of children arriving by Scooters, Skates and Bicycles, but this seems to be increasing over time (left to right). I wanted to know more about what was going on in Primary schools, were scooters really taking off? What I did next was to look at just the Primary school data and each mode of transport on its own (see image below). Each panel displays data on one mode of transport over time. Each line in each panel represents a single local authority. The coloured lines (red and blue) represent the overall trend across the years of the survey. The blue lines are where there is statistical evidence for a trend over time[^2]. A red line means that there is no evidence for any trend over time.
 
 ```{r, message = F, echo = F, fig.height=5, fig.width=8}
 # trends in primary school 
@@ -73,7 +71,7 @@ ggplot(primary, aes(x = Year, y = count)) +
   theme_blog
 ```
 
-As you can see the two panels with blue lines sloping upwards are "Cycle" and "Scooter/Skate". In these cases, there is evidence to suggest an increase over time. Although they are still relatively small proportions compared to say "Walk" or "Driven" (look at the y-axes), cycling and other forms of active transport have become more popular in Scottish primary schools. This is no surprise as the streets are full of scooters in the morning and every bike has a kiddy trailer. One last thing, if you look closely at the Scooter/Skate panel, there are a couple of grey lines that that stick right out at the top of the panel. This means that these schools have an unusually large proportion of children getting to school by either scooter or roller skates. I wanted to know which ones these were so I created a scooter leaderboard for 2014.
+As you can see, the two panels with blue lines sloping upwards are “Cycle” and “Scooter/Skate”. In these cases, there is evidence to suggest an increase over time. Although they are still relatively small proportions compared to say “Walk” or “Driven” (look at the y-axes), cycling and other forms of active transport have become more popular in Scottish primary schools. This is no surprise as the streets are full of scooters in the morning and every bike has a kiddy trailer. One last thing, if you look closely at the Scooter/Skate panel, there are a couple of grey lines that stick right out at the top of the panel. This means that these schools have an unusually large proportion of children getting to school by either scooter or roller skates. I wanted to know which ones these were so I created a scooter leaderboard for 2014.
 
 ```{r, message = F, echo = F}
 top10 <- primary %>% 
@@ -86,12 +84,10 @@ names(top10)[2:3] <- c("Local Authority", "Proportion of children arriving by Sc
 pander(top10, justify = "left")
 ```
 
-Wow. East Lothian and Midlothian have over 10% of children arriving by scooter!
-
-Ok thats all from me for now. There is much more to discover in this data, if you're still reading and you would like to know more, feel free to email us. Also if you are a data enthusiast feel free to download all of my code for this from my [github page](https://github.com/rmnppt/HandsUpScotland). Everything I have done on this and will do on this, will live there.
+Wow. East Lothian and Midlothian have over 10% of children arriving by scooter! Ok that’s all from me for now. There is much more to discover in this data, if you’re still reading and you would like to know more, feel free to email us. Also if you are a data enthusiast feel free to download all of my code for this from my [github page](https://github.com/rmnppt/HandsUpScotland). Everything I have done on this and will do on this, will live there.
 
 Bye for now, see you soon.
 
-[^1]: There are some health warnings that come with this data. For the thourough skeptics I suggest reading more [here](http://www.sustrans.org.uk/sites/default/files/images/files/scotland/Hands%20Up%20Scotland%20Survey/Hands%20Up%20Scotland%202014_National%20Results%20Summary%20EMBARGOED%20UNTIL%2029.05.15.pdf) especially under Technical Notes. Personally I don't think any of the health warnings given would affect the conclusions here but if you disagree, please get in touch.
+[^1]: There are some health warnings that come with this data. For the thourough skeptics I suggest reading more [here](http://www.sustrans.org.uk/sites/default/files/images/files/scotland/Hands%20Up%20Scotland%20Survey/Hands%20Up%20Scotland%202014_National%20Results%20Summary%20EMBARGOED%20UNTIL%2029.05.15.pdf) especially under Technical Notes. Personally I don't think any of the health warnings given would affect the conclusions.
 
-[^2]: I fitted linear models through time, using F-ratio to determine if the linear slopes were significantly different from 0. P values were then corrected for multiple testing. If the slope was p < 0.05, I considered this statistical evidence of a temporal trend.
+[^2]: I fitted linear models through time, using F-ratio to determine if the linear slopes were significantly different from 0. P values were then corrected for multiple testing. If the slope remained p < 0.05, I considered this statistical evidence of a temporal trend.
