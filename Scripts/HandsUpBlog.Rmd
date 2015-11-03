@@ -2,7 +2,7 @@
 title: "The rise of the scooter"
 author: "Roman Popat"
 date: "19 October 2015"
-output: word_document
+output: html_document
 ---
 
 ```{r, message = F, echo = F}
@@ -64,6 +64,7 @@ trends$sig <- F; trends$sig[sig] <- T
 # produce
 ggplot(primary, aes(x = Year, y = count)) +
   geom_line(aes(group = Local.Authority), alpha = 0.2, col = grey(0.3)) +
+  geom_point(size = 1, alpha = 0.5) + 
   geom_abline(aes(intercept = interc, slope = grad, colour = sig), 
               trends, size = I(2)) +
   facet_wrap(~ mode, nrow = 2, scales = "free") +
