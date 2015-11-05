@@ -35,11 +35,12 @@ trends$sig <- F
 trends$sig[sig] <- T
 
 # produce
-jpeg("Plots/Figure2.jpeg", 800, 500, quality = 100)
+jpeg("Plots/Figure2.jpeg", 620, 350, quality = 100, res = 70)
 ggplot(primary, aes(x = Year, y = count)) +
   geom_line(aes(group = Local.Authority), alpha = 0.2, col = grey(0.3)) +
 #   # stat_summary(fun.y = mean, geom = "line", colour = "red", size = 1) +
 #   stat_smooth(method = "lm", colour = "red", size = 1) +
+  geom_point(size = 1, alpha = 0.5) + 
   geom_abline(aes(intercept = interc, slope = grad, colour = sig), trends, size = I(2)) +
   facet_wrap(~ mode, nrow = 2, scales = "free") +
   theme_blog

@@ -18,11 +18,12 @@ modes <- datM %>%
   summarise(count = sum(count, na.rm = T)) %>%
   filter(!is.na(School.Type))
 
-jpeg("Plots/Figure1.jpeg", 800, 500, quality = 100)
+jpeg("Plots/Figure1.jpeg", 620, 350, quality = 100, res = 85)
 ggplot(modes, aes(x = Year, y = count)) + 
   geom_bar(aes(fill = mode), stat = "identity", position = "fill") +
   facet_grid(~ School.Type) +
   ylab("") +
+  theme(axis.text.x = element_text(angle = 315, hjust = 0)) +
   theme_blog
 dev.off()
 
